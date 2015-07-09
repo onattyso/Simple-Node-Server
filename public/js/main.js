@@ -22,7 +22,8 @@ var Socket = (function () {
       // var that = this;
       this.socket = io(':8080/');
       this.socket.on('audio out', function (data) {
-        console.log(data);
+        // console.log(data);
+        update(data);
       });
     }
   };
@@ -31,11 +32,12 @@ var Socket = (function () {
 
 function init() {
   Socket.init();
-
-  //Grab mic data from admin!
-
 }
 
+function update(data) {
+  //all my animations! using the data!
+  console.log(data);
+}
 
 
 function load() {
