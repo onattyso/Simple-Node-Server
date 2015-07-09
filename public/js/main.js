@@ -20,11 +20,10 @@ var Socket = (function () {
     socket: null,
     init: function () {
       // var that = this;
-      // this.socket = io('http://localhost:'+App.config.port);
-      // this.socket.on('news', function (data) {
-        // console.log(data);
-        // this.socket.emit('my other event', {my: 'data'});
-      // });
+      this.socket = io(':8080/');
+      this.socket.on('audio out', function (data) {
+        console.log(data);
+      });
     }
   };
 })();
@@ -32,7 +31,11 @@ var Socket = (function () {
 
 function init() {
   Socket.init();
+
+  //Grab mic data from admin!
+
 }
+
 
 
 function load() {
