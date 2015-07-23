@@ -81,6 +81,18 @@ textarea {
   .notes ul {
     padding-left: 24px; }
 
+html, body {
+  width: 100%;
+  height: 100%;
+}
+
+
+#canvas {
+  display: block;
+  overflow: hidden;
+  background-color: #ffffff;
+}
+
 /* ==========================================================================
    Helper classes
    ========================================================================== */
@@ -196,3 +208,6 @@ textarea {
   h2,
   h3 {
     page-break-after: avoid; } }
+
+
+

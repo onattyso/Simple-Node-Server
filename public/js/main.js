@@ -32,13 +32,34 @@ var Socket = (function () {
 
 function init() {
   Socket.init();
+  resize();
+
+  
+}
+
+function resize() {
+    //resize canvas
+    var canvas = document.getElementById('canvas'),
+        context = canvas.getContext('2d');
+
+    // resize the canvas to fill browser window dynamically
+    window.addEventListener('resize', resizeCanvas, false);
+
+    function resizeCanvas() {
+      var randomColor = '#'+Math.floor(Math.random()*16777215).toString(16);
+
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      document.getElementById("canvas").style.backgroundColor=randomColor;
+    }
+    resizeCanvas();
 }
 
 function update(data) {
   //all my animations! using the data!
   console.log(data);
   //PUT ALL THIS DATA INTO THE POINTS IN THE SQUARE
-  
+
 
 }
 
