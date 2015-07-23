@@ -15,6 +15,8 @@
 //   });
 // }
 
+var mic, micLevel;
+
 var Socket = (function () {
   return {
     socket: null,
@@ -58,25 +60,24 @@ function initAudioInput() {
 }
 
 function gotStream(stream) {
-  // Create an AudioNode from the stream.
-  var mediaStreamSource = audioContext.createMediaStreamSource(stream);
-  // Create a new volume meter and connect it.
-  meter = createAudioMeter(audioContext);
-  mediaStreamSource.connect(meter);
+    var mediaStreamSource = audioContext.createMediaStreamSource(stream);
 
+    mic = new p5.AudioIn(audioContext);
+    mic.start(audioContext);
 
-  // This is where you loop and continue checking the meter.volume value:
-  audioInterval = window.setInterval(function() {
-    console.log("meter.volume: " + meter.volume);
-    if (meter.volume > 0.075) {
-        console.log("We're getting data!");
-        Socket.socket.emit('audio data', meter.volume);
-    }
-  } , 10);
+    audioInterval = window.setInterval(function() {
+      micLevel = mic.getLevel();
+      console.log(micLevel);
+      if (micLevel > 0.01) {
+          console.log("We're getting data!");
+          Socket.socket.emit('audio data', micLevel);
+      }
+    } , 100);
 }
 
 
 function load() {
+
 }
 
 $(document).ready(function () {

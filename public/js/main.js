@@ -38,6 +38,8 @@ function update(data) {
   //all my animations! using the data!
   console.log(data);
   //PUT ALL THIS DATA INTO THE POINTS IN THE SQUARE
+  
+
 }
 
 
