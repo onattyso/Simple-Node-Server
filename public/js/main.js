@@ -32,40 +32,54 @@ var Socket = (function () {
 
 function init() {
   Socket.init();
-  resize();
-
-  
+  setup();
 }
 
 function resize() {
     //resize canvas
-    var canvas = document.getElementById('canvas'),
-        context = canvas.getContext('2d');
+    var canvas = document.getElementById('defaultCanvas');
+        // context = canvas.getContext('2d');
 
     // resize the canvas to fill browser window dynamically
     window.addEventListener('resize', resizeCanvas, false);
 
+
+//do all of this changing color thing in p5
     function resizeCanvas() {
       var randomColor = '#'+Math.floor(Math.random()*16777215).toString(16);
 
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
-      document.getElementById("canvas").style.backgroundColor=randomColor;
+      canvas.removeAttribute('style');
+      canvas.style.width = window.innerWidth;
+      canvas.style.height = window.innerHeight;
+
+      canvas.style.backgroundColor=randomColor;
     }
     resizeCanvas();
 }
+
+var w = 50;
 
 function update(data) {
   //all my animations! using the data!
   console.log(data);
   //PUT ALL THIS DATA INTO THE POINTS IN THE SQUARE
+  w = data*100;
+}
 
+function setup () {
+}
 
+function draw() {
+  ellipse(w, 50, 50,50);
+//when draw happens, it comes up with a new color for when the resize happens. 
 }
 
 
 function load() {
   //SQUARE IS ROTATING
+  resize();
 }
 
 $(document).ready(function () {
